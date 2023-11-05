@@ -17,6 +17,10 @@ public class OrderPage extends BasePage {
         super(driver, "https://qa-scooter.praktikum-services.ru/order");
     }
 
+    /**
+     * Создание заказа на аренду самоката
+     * В задании не сказано сколько должно быть степов и какой сложности
+     */
     public void createOrder(String firstName, String lastName, String address, String station, String phoneNumber, String date,String day,String colour, String comment,String expectedResult ){
         WebElement orderForm = driver.findElement(By.className("Order_Form__17u6u")); // форма заказа
         List<WebElement> orderFormInput = orderForm.findElements(By.className("Input_InputContainer__3NykH")); // текстовые поля формы заказа

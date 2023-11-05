@@ -12,6 +12,7 @@ import PageObject.OrderPage;
 @RunWith(Parameterized.class) // добавили раннер Parameterized
 
 public class ScooterTest {
+    String button;
     String firstName;
     String lastName;
     String address;
@@ -30,7 +31,8 @@ public class ScooterTest {
 
 
     // конструктор с параметрами
-    public ScooterTest(String firstName, String lastName, String address, String station, String phoneNumber, String date,String day,String colour, String comment, String expectedResult) {
+    public ScooterTest(String button, String firstName, String lastName, String address, String station, String phoneNumber, String date,String day,String colour, String comment, String expectedResult) {
+        this.button = button; // выбираем кнопку
         this.firstName = firstName; // заполняем поле Имя
         this.lastName = lastName;// заполняем поле Фамилия
         this.address = address;// заполняем поле Адрес: куда привезти заказ
@@ -47,17 +49,19 @@ public class ScooterTest {
     @Parameterized.Parameters
     public static Object[][] getTextData() {
         return new Object[][]{
-                {"Александр", "Федоров", "Адрес.дом", "Сокольники", "89103335577", "11.09.2025", "двое суток", "black", "Нет","Заказ оформлен"},// первый набор данных
-                {"Вася", "Пупкин", "Дом.адрес", "Сходненская", "73216667799", "26.04.1986", "пятеро суток", "grey", "Да", "Заказ оформлен"}// второй набор данных
+                { "down","Александр", "Федоров", "Адрес.дом", "Сокольники", "89103335577", "11.09.2025", "двое суток", "black", "Нет","Заказ оформлен"},// первый набор данных для нижней кнопки
+                { "down","Вася", "Пупкин", "Дом.адрес", "Сходненская", "73216667799", "26.04.1986", "пятеро суток", "grey", "Да", "Заказ оформлен"},// второй набор данных для нижней кнопки
+                { "","Вася", "Пупкин", "Дом.адрес", "Сходненская", "73216667799", "26.04.1986", "пятеро суток", "grey", "Да", "Заказ оформлен"},// первый набор данных для верхней кнопки
+                { "","Александр", "Федоров", "Адрес.дом", "Сокольники", "89103335577", "11.09.2025", "двое суток", "black", "Нет","Заказ оформлен"}// второй набор данных для верхней кнопки
 
         };
     }
 
     @Test
-    public void test() {
+    public void orderFormTest() {
         mainPage.openPage();// открыли страницу
 
-        mainPage.clickButtonOrder();//жмем кнопку заказать
+        mainPage.clickButtonOrder(button);
         orderPage.createOrder(firstName, lastName, address, station, phoneNumber, date, day, colour, comment, expectedResult);//вводим данные
 
     }

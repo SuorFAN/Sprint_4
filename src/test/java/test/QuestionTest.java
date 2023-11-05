@@ -15,7 +15,7 @@ public class QuestionTest {
     String expectedResult;
     // поля класса:
     // WebDriver driver = new ChromeDriver(); // драйвер для хрома
-    WebDriver driver = new FirefoxDriver(); // драйвер для хрома
+    WebDriver driver = new FirefoxDriver(); // драйвер для файрфокса
     MainPage mainPage = new MainPage(driver); // главная страница
 
 
@@ -42,7 +42,7 @@ public class QuestionTest {
 
 
     @Test
-    public void test() {
+    public void dropdownListTest() {
         mainPage.openPage();// открыли страницу
         mainPage.checkQuestion(id, expectedResult); // сравниваем результат
 
